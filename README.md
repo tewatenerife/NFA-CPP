@@ -1,4 +1,4 @@
-Nondeterministic Finite Automata (NFA)
+Nondeterministic Finite Automata (NFA) Simulator
 --------------------------------------
 
-A NFA simulator written in C++. 
+An NFA simulator written in C++. 
