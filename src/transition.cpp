@@ -14,8 +14,8 @@ Transition::~Transition() {
 }
 
 ostream& operator<<(ostream& os, const Transition& trans) {
-    os << trans.current_state_ << " " << trans.read_symbol_ << " " << trans.next_state_;
+    os << trans.current_state_ << "                     ";
+    os << trans.read_symbol_ << "                  ";
+    os << trans.next_state_;
     return os;
 }
-
-

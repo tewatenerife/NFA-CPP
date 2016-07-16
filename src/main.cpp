@@ -58,6 +58,10 @@ int main(int argc, char** argv)
                 }
                 break;
 
+            case 's':
+                cout << "Ejecución finalizada\n" << endl;
+                break;
+
             default: cout << "Opción no reconocida" << endl;
         }
     } while (option != 's');

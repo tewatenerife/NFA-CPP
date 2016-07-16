@@ -23,3 +23,13 @@ bool Alphabet::contains_symbol(char symbol) {
 
     return false;
 }
+
+bool Alphabet::contains_string(string string) {
+    for (int i = 0; i < string.length(); i++) {
+        if (!contains_symbol(string[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}

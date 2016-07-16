@@ -19,6 +19,7 @@ public:
     inline void set_symbols(vector<char> symbols) { symbols_ = symbols; }
     void add_symbol(char symbol);
     bool contains_symbol(char symbol);
+    bool contains_string(string string);
     inline int size() { return symbols_.size(); }
 };
 

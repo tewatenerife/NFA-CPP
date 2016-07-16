@@ -60,13 +60,24 @@ void NFA::read_from_file(string filename) {
         }
 
         file.close();
+
+    } else {
+        cout << "Fichero no encontrado" << endl;
     }
 }
 
 void NFA::simulate(string input_string) {
     Input input(input_string);
     vector<Transition> transitions;
-    simulate_r(input, get_initial_state(), transitions);
+
+    // Comprobar que todos los símbolos de la cadena
+    // pertenecen al alfabeto de entrada
+    if (!input_alphabet_.contains_string(input_string)) {
+        cout << "Entrada no válida" << endl;
+
+    } else {
+        simulate_r(input, get_initial_state(), transitions);
+    }
 }
 
 void NFA::simulate_r(Input input, string current_state, vector<Transition> transitions) {
@@ -74,14 +85,15 @@ void NFA::simulate_r(Input input, string current_state, vector<Transition> trans
 
     if (possible_transitions.size() == 0 || input.is_finished()) {
         // Visualizar camino
+        cout << "Estado actual       Entrada       Siguiente estado" << endl;
         for (int i = 0; i < transitions.size(); i++) {
             cout << transitions[i] << endl;
         }
 
         if (get_state(current_state)->is_final() && input.is_finished()) {
-            cout << "Cadena de entrada ACEPTADA" << endl;
+            cout << "Cadena de entrada ACEPTADA" << endl << endl;
         } else {
-            cout << "Cadena de entrada NO ACEPTADA" << endl;
+            cout << "Cadena de entrada NO ACEPTADA" << endl << endl;
         }
 
     } else {
@@ -139,6 +151,7 @@ State* NFA::get_state(const string id) {
 
 vector<Transition> NFA::get_transitions(string state_id, char read_symbol) {
     vector<Transition> transitions;
+
     for (unsigned i = 0; i < transitions_.size(); i++) {
         if (transitions_[i].get_current_state() == state_id && transitions_[i].get_read_symbol() == read_symbol) {
             transitions.push_back(transitions_[i]);
